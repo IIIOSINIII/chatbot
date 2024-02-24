@@ -3,8 +3,7 @@ import streamlit as st
 from openai import OpenAI
 import secret_keys
 
-client = OpenAI(api_key = secret_keys.openai_api_key)
-
+cliente = OpenAI(api_key = "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")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
