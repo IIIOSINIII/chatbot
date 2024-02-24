@@ -1,5 +1,7 @@
+%%writefile app.py
 import streamlit as st
-from openai import openAI 
+from openai import openAI
+import secret_keys
 
 client = OpenAI(api_key = secret_keys.openai_api_key)
 
@@ -37,6 +39,13 @@ user_input = st.text_input("por favor ingrese un mensaje aquí.", key = "user_in
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
 
+
+    for message in reversed(messages[1:]):
+        if isinstance(message, dict):
+            speaker = "😎" if message["role"] == "user" else "🤖"
+            st.write (speaker + ": " + message["content"])
+        else:
+            st.write("🤖: " + message.content)
 
     for message in reversed(messages[1:]):
         if isinstance(message, dict):
