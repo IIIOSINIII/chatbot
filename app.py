@@ -1,7 +1,10 @@
 import streamlit as st
 from openai import OpenAI
 
+
+
 client = OpenAI(api_key = st.secrets.OpenAIAPI.openai_apikey)
+
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
@@ -15,7 +18,7 @@ def communicate():
     messages.append(user_message)
 
 
-    response = cliente.chat.completions.create(
+    response = client.chat.completions.create(
       model="gpt-3.5-turbo",
       messages=messages
     )
